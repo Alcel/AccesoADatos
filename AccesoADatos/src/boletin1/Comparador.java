@@ -5,7 +5,7 @@ public class Comparador {
 		String sistemaOperativo = System.getProperty("os.name");
 		String fichero1;
 		String fichero2;
-		File fFichero1 = null;
+		File fFichero1 = null; //file.separator comprobar
 		File fFichero2 = null;
 		if(sistemaOperativo.startsWith("Win")) {
 			fichero1=".\\datos\\"+args[0]+".txt";
