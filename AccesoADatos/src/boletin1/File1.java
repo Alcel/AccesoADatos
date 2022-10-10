@@ -7,9 +7,10 @@ public class File1 {
 	static File UNO= new File("~/Pruebas/Primera/uno.txt");
 	static File DOS= new File("~/Pruebas/Segunda/dos.txt");
 	static File TRES= new File("~/Pruebas/Primera/Tercera/tres.txt");
+	
 	public static void crear() {
-		File raiz = new File("/etc/passwd");
-		if(raiz.exists()) {
+		String sistemaOperativo = System.getProperty("os.name");
+		if(sistemaOperativo.equals("Linux")) {
 			System.out.println("Es un sistema linux");
 			DIRECTORIOS1.mkdirs();
 			DIRECTORIOS2.mkdirs();
