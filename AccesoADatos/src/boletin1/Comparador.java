@@ -7,9 +7,9 @@ public class Comparador {
 		String fichero2;
 		File fFichero1 = null; //file.separator comprobar
 		File fFichero2 = null;
-		if(sistemaOperativo.startsWith("Win")) {
-			fichero1=".\\datos\\"+args[0]+".txt";
-			fichero2=".\\datos\\"+args[1]+".txt";
+		
+			fichero1="."+File.separator +"src"+File.separator +"boletin1"+File.separator+"datos"+File.separator +args[0];
+			fichero2="."+File.separator +"src"+File.separator +"boletin1"+File.separator+"datos"+File.separator +args[1];
 			fFichero1= new File(fichero1);
 			fFichero2= new File(fichero2);
 			System.out.println("Hola");
@@ -17,12 +17,7 @@ public class Comparador {
 				System.out.println("Ambos existen");
 			}
 			else {
-				System.err.println("Alguna de las rutas no existe");
+				System.err.println("Adios");
 			}
-		}
-		else {
-			fichero1="./datos/"+args[0]+".txt";
-			fichero2="./datos/"+args[1]+".txt";
-		}
 	}
 }
