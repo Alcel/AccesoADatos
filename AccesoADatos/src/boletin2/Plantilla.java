@@ -4,15 +4,15 @@ import java.io.*;
 
 public class Plantilla {
 	public static void main(String[] args) throws IOException {
-		nuevoEmpleado();
+		nuevoEmpleado("Juan",23,1200,false);
 	}
 	
-	public static void nuevoEmpleado (/*String nombre, int edad, double sueldo, boolean jubilado*/) throws IOException {
+	public static void nuevoEmpleado (String nombre, int edad, double sueldo, boolean jubilado) throws IOException {
 		File archivo = new File("./src/datos/plantilla.dat.txt");
 		archivo.createNewFile();
-		System.out.println(archivo.exists());
-		FileOutputStream flujoOut = new FileOutputStream(archivo);
 		
+		FileOutputStream flujoOut = new FileOutputStream(archivo);
+		flujoOut.write(nombre);
 		
 		flujoOut.close();
 	}
