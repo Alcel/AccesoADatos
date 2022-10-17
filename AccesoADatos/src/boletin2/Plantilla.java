@@ -12,8 +12,17 @@ public class Plantilla {
 		archivo.createNewFile();
 		
 		FileOutputStream flujoOut = new FileOutputStream(archivo);
-		flujoOut.write(nombre);
+		DataOutputStream dos = new DataOutputStream(flujoOut);
 		
+		dos.writeBytes(nombre);
+		dos.write(edad);
+		dos.writeDouble(sueldo);
+		dos.writeBoolean(jubilado);
+		
+		
+		
+		
+		dos.close();
 		flujoOut.close();
 	}
 	
