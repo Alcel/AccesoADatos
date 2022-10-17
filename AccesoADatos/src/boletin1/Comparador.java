@@ -31,7 +31,8 @@ public class Comparador {
 				try {
 					while((thisLine = primer.readLine())!=null && numero==0) {
 						if(primer.readLine()!=segun.readLine()) {
-							System.err.println("Error en linea"+/*TERMINAR*/);
+							//TODO
+							//System.err.println("Error en linea"+/*TERMINAR*/);
 							numero=1;
 						}
 					}
