@@ -18,11 +18,14 @@ public class Cifrador {
 		String abcd ="ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
 		int numPosiciones=0;
 		int num;
-		int suma=0;
+		int calculo=0;
+		boolean signo=false;
+		
 		char letra;
 		char cifrado;
 		boolean check=true;
 		boolean numCorrecto = true;
+		ficheroAEscribir.createNewFile();
 		try {Integer.parseInt(args[1]);}
 		catch(Exception ent) {
 			numCorrecto=false;
@@ -30,23 +33,39 @@ public class Cifrador {
 		
 		if(fichero.exists()&&args.length==2&&numCorrecto) {
 			numPosiciones = Integer.parseInt(args[1]);
+			if(numPosiciones<0) {
+				signo=false;
+			}else {
+				signo=true;
+			}
 			while((num= lectorBuffered.read())!=-1) {
 				check=true;
 				letra = (char)num;
 				
 				for(int i=0;i<abcd.length();i++) {
-					suma=i+numPosiciones;
+					/*if(signo) {
+						calculo=i-numPosiciones;
+					}
+					else {
+						calculo=i+numPosiciones;
+					}*/
+					
 					/*Terminar , que la suma entre el numero de posiciones mas i no sea mayor que el numero de caracteres*/
 					
 					if(abcd.charAt(i)==letra) {
-						
+						calculo=i+numPosiciones;
 				
-						while(suma>abcd.length()) {
-							suma=suma-27;
-							System.out.print(suma);
+						while(calculo>abcd.length()) {
+							calculo=calculo-27;
+							System.out.print(calculo);
 						}
-						if(suma<abcd.length()) {
-							escritorBuffered.write(abcd.charAt(suma));
+						
+						while(calculo<0) {
+								calculo+=27;
+						}
+						
+						if(calculo<abcd.length()) {
+							escritorBuffered.write(abcd.charAt(calculo));
 						}
 						
 						

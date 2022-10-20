@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public class Plantilla {
 	public static void main(String[] args) throws IOException {
 		//nuevoEmpleado("Ivan 'El ingles' Rodriguez",39,2200,true);
-		//muestraEmpleados();
+		muestraEmpleados();
 		//muestraEmpleado(0);
-		eliminaEmpleado(0);
+		//eliminaEmpleado(0);
 	}
 	
 	public static void nuevoEmpleado (String nombre, int edad, double sueldo, boolean jubilado) throws IOException {
