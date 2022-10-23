@@ -13,7 +13,7 @@ public class Plantilla2 {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		
-		Empleado manu = new Empleado("Damfaq",49,2598700,false);
+		Empleado manu = new Empleado("Dam",4,25980,false);
 		nuevoEmpleado(manu);
 		//muestraEmpleados();
 		
@@ -22,37 +22,41 @@ public class Plantilla2 {
 	public static void nuevoEmpleado (Empleado emp) throws IOException, ClassNotFoundException {
 		FileOutputStream escritor = new FileOutputStream(plantilla2,true);
 		ObjectOutputStream escritorObjetos = new ObjectOutputStream(escritor);
-		Empleado empleado = new Empleado();
-		ArrayList<Empleado> lista = new ArrayList<>();
+		
+		
+		
 		FileInputStream lector = new FileInputStream(plantilla2);
 		ObjectInputStream lectorObjetos = new ObjectInputStream(lector);
 		
-		if(lectorObjetos.available()>0) {
-			empleado =(Empleado) lectorObjetos.readObject();
-			while(lector.available()!=-1) {
-				
-				lista.add(empleado);
-				}
-			for(int i=0;i<lista.size();i++) {
-				escritorObjetos.writeUTF(lista.get(i).getNombre());
-				escritorObjetos.writeInt(lista.get(i).getEdad());
-				escritorObjetos.writeDouble(lista.get(i).getSueldo());
-				escritorObjetos.writeBoolean(lista.get(i).isJubilado());
-			}
-	
+		Empleado empleado;
+		ArrayList<Empleado> lista = new ArrayList<>();
 		
-				
-			lectorObjetos.close();
-			lector.close();
+		
 			
-			escritorObjetos.writeObject(emp);
-			escritorObjetos.close();
-			escritor.close();
+		while(lector.available()>0) {
+			System.out.println("Hola");
+			 empleado = (Empleado) lectorObjetos.readObject();
+			 System.out.printf("Nombre: %8s\t edad: %d\t cargo: %15s\t sueldo: %.2f\n", empleado.getNombre(),
+						empleado.getEdad(), empleado.isJubilado(), empleado.getSueldo());
+			 lista.add(empleado);
 		}
-		else {
-			System.err.println("No hay objeto alguno");
-			escritorObjetos.writeObject(emp);
+		empleado= emp;
+		lista.add(empleado);
+		lectorObjetos.close();
+		lector.close();
+		
+		for(int i=0;i!=lista.size();i++) {
+			
 		}
+		
+		escritorObjetos.writeObject(emp);
+		
+		escritorObjetos.close();
+		escritor.close();
+		
+		
+		
+	
 		
 	}
 	public static void muestraEmpleados () throws IOException, ClassNotFoundException {

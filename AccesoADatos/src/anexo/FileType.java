@@ -1,4 +1,4 @@
-package boletin2;
+package anexo;
 import java.io.Serializable;
 
 public class FileType implements Serializable {
