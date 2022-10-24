@@ -12,7 +12,7 @@ public class Puntuaciones {
 	private static File fiPuntData = new File("./src/datos/puntuaciones.dat");
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		Calendar fecha = new GregorianCalendar(215, 11, 5);
-		Puntuacion alberto = new Puntuacion("Alberto",10,41,fecha);
+		Puntuacion alberto = new Puntuacion("Albert",0,41,fecha);
 		nuevo(alberto);
 		muestraPuntuaciones();
 		
@@ -29,7 +29,7 @@ public class Puntuaciones {
 		int contador=0;
 		boolean resultado=false;
 		boolean orden=false;
-		int numMayorQue=0;
+		int numMayorQue=5;
 		Puntuacion auxPunt;
 		fiPuntData.createNewFile();
 		long tamanio =fiPuntData.length();
@@ -38,8 +38,7 @@ public class Puntuaciones {
 		FileInputStream fisNuevo = new FileInputStream(fiPuntData);
 		ObjectInputStream oisNuevo = null;
 		
-		
-		
+	
 		
 		//Declare las variables, incluidos los stream
 		
@@ -63,7 +62,28 @@ public class Puntuaciones {
 			fosNuevo = new FileOutputStream(fiPuntData);
 			oosNuevo=new ObjectOutputStream(fosNuevo);
 			
-			if(nombre.size()==5) { //Si la lista ya esta llena
+			if(nombre.size()==5) { //Si la lista ya esta llena  (por hacer)
+				for (int i = 0; i < 5; i++) {
+					if(((minutos.get(i)*60)+segundos.get(i))>((nuevaPuntuacion.getMinutos()*60)+nuevaPuntuacion.getSegundos())) {
+						numMayorQue--;	
+					}
+				}
+
+					for (int i = 0; i < nombre.size(); i++) {
+						if(i==numMayorQue) {
+							auxPunt = new Puntuacion(nuevaPuntuacion.getNombre(),nuevaPuntuacion.getMinutos(), 
+									nuevaPuntuacion.getSegundos(), nuevaPuntuacion.getFecha());
+							oosNuevo.writeObject(auxPunt);
+						}else {
+							auxPunt = new Puntuacion(nombre.get(i), minutos.get(i), segundos.get(i), fecha.get(i));
+							oosNuevo.writeObject(auxPunt);
+						}
+						
+					}
+					
+					oosNuevo.close();
+				}
+			else {//Si la lista no esta llena
 				for (int i = 0; i < nombre.size(); i++) {
 					if(((minutos.get(i)*60)+segundos.get(i))<((nuevaPuntuacion.getMinutos()*60)+nuevaPuntuacion.getSegundos())) {
 						orden=true;
@@ -92,50 +112,12 @@ public class Puntuaciones {
 					}
 					
 					//Y ahora los volvemos a introducir junto a la nueva puntuacion
-					
-					
-					oosNuevo.close();
-				}
-				
-			}else {//Si la lista no esta llena (por hacer)
-				for (int i = 0; i < nombre.size(); i++) {
-					if(((minutos.get(i)*60)+segundos.get(i))<((nuevaPuntuacion.getMinutos()*60)+nuevaPuntuacion.getSegundos())) {
-						orden=true;
-					}
-				}
-				if(orden) {
-					for (int i = 0; i < nombre.size(); i++) {
-						auxPunt = new Puntuacion(nombre.get(i), minutos.get(i), segundos.get(i), fecha.get(i));
-						oosNuevo.writeObject(auxPunt);
-					}
-					
-					//Y ahora los volvemos a introducir junto a la nueva puntuacion
-					
-					auxPunt = new Puntuacion(nuevaPuntuacion.getNombre(),nuevaPuntuacion.getMinutos(), 
-							nuevaPuntuacion.getSegundos(), nuevaPuntuacion.getFecha());
-					oosNuevo.writeObject(auxPunt);
-					oosNuevo.close();
-				}
-				else {
-					auxPunt = new Puntuacion(nuevaPuntuacion.getNombre(),nuevaPuntuacion.getMinutos(), 
-							nuevaPuntuacion.getSegundos(), nuevaPuntuacion.getFecha());
-					oosNuevo.writeObject(auxPunt);
-					for (int i = 0; i < nombre.size(); i++) {
-						auxPunt = new Puntuacion(nombre.get(i), minutos.get(i), segundos.get(i), fecha.get(i));
-						oosNuevo.writeObject(auxPunt);
-					}
-					
-					//Y ahora los volvemos a introducir junto a la nueva puntuacion
-					
 					
 					oosNuevo.close();
 				}
 			}
 			
 
-			
-			
-			
 		
 		}else {
 			
@@ -152,12 +134,9 @@ public class Puntuaciones {
 		return resultado;
 	}
 	public static void muestraPuntuaciones() throws IOException, ClassNotFoundException {
-
-	
 		int contador=0;
 		boolean resultado=false;
 		Puntuacion auxPunt;
-		
 		long tamanio =fiPuntData.length();
 		
 		FileInputStream fisNuevo = new FileInputStream(fiPuntData);
