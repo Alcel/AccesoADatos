@@ -13,9 +13,9 @@ public class Plantilla2 {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		
-		Empleado manu = new Empleado("Dam",4,25980,false);
-		nuevoEmpleado(manu);
-		//muestraEmpleados();
+		Empleado manu = new Empleado("Dami",44,2590,true);
+		//nuevoEmpleado(manu);
+		muestraEmpleados();
 		
 	}
 	
@@ -33,7 +33,7 @@ public class Plantilla2 {
 		
 		
 			
-		while(lector.available()>0) {
+		while(lector.available()>8) {
 			System.out.println("Hola");
 			 empleado = (Empleado) lectorObjetos.readObject();
 			 System.out.printf("Nombre: %8s\t edad: %d\t cargo: %15s\t sueldo: %.2f\n", empleado.getNombre(),
@@ -63,7 +63,8 @@ public class Plantilla2 {
 		Empleado empleado = new Empleado();
 		FileInputStream lector = new FileInputStream(plantilla2);
 		ObjectInputStream lectorObjetos = new ObjectInputStream(lector);
-		while(lectorObjetos.available()!=-1) {
+		while(lector.available()>0) {
+			
 			empleado =(Empleado) lectorObjetos.readObject();
 			System.out.println("Nombre: "+empleado.getNombre());
 			System.out.println("Edad: "+empleado.getEdad());
