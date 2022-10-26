@@ -9,12 +9,13 @@ import java.util.Arrays;
 import anexo.FileType;
 
 public class Magico {
-	public static void main(String[] args) {
-		String RUTA ="./src/datos/"+args[0];
-		String RUTATIPOS ="./src/datos/tipos.dat";
+	
+		public static void main(String[] args) {
+		String ruta ="./src/datos/"+args[0];
+		String rutaTipos ="./src/datos/tipos.dat";
 		FileType tipo;
-		File archivoIntro = new File(RUTA);
-		File tipos = new File(RUTATIPOS);	
+		File archivoIntro = new File(ruta);
+		File tipos = new File(rutaTipos);	
 		FileInputStream fisFichero=null;
 		DataInputStream dataFichero=null;
 		ObjectInputStream oisFichero=null;
@@ -26,8 +27,6 @@ public class Magico {
 		String extensionCorr = null;
 		int[] numPropio = new int[4];
 		int[] numEntrante= new int[4];
-		
-	
 		
 		//¿Existe el archivo?
 		if(archivoIntro.exists()) {//Si
@@ -50,9 +49,6 @@ public class Magico {
 						descripcion=tipo.getDescripcion();
 						
 						extensionCorr=tipo.getExtension();
-						System.out.println(extensionCorr);
-						System.out.println(extensionLetra);
-						
 						if(extensionLetra.equals(extensionCorr) ) {
 							extension=true;
 						}
