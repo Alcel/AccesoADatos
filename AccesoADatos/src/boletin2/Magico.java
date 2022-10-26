@@ -67,10 +67,10 @@ public class Magico {
 				
 				System.out.println("Contenido: \""+descripcion+"\"");
 				if(extension) {
-					System.out.println("Extension correcta");
+					System.out.println("Extension: correcta.");
 				}
 				else {
-					System.out.println("Extension erronea, se propone "+extensionCorr);
+					System.out.println("Extension: errónea, se propone: "+extensionCorr);
 				}
 			}
 			else {
