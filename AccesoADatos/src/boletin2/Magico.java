@@ -26,10 +26,9 @@ public class Magico {
 		String descripcion="";
 		String extensionCorr = null;
 		int[] numPropio = new int[4];
-		int[] numEntrante= new int[4];
 		
-		//¿Existe el archivo?
-		if(archivoIntro.exists()) {//Si
+		//¿Existe el archivo y tiene solo un comando?
+		if(archivoIntro.exists() && args.length==1) {//Si
 			
 			try {
 				fisFichero = new FileInputStream(archivoIntro);	
@@ -79,7 +78,15 @@ public class Magico {
 			}
 		}
 		else {//No
-			System.err.println("El archivo no existe");
+			System.err.println("Ha ocurrido un error por el o los siguientes posibles motivos:");
+			if(args.length!=1) {
+				System.err.println("Ha entroducido "+args.length+" elementos como comandos. "
+						+ "Ha de introducir solo un comando.");
+			}
+			if(!archivoIntro.exists()) {
+				System.err.println("La ruta "+archivoIntro+" no es correcta, porfavor revisela");
+			}
+			
 		}
 	}
 }

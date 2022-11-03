@@ -1,20 +1,21 @@
-package anexo;
+package boletin2;
 
 
 import java.io.*;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import anexo.Puntuacion;
 
 
 public class Puntuaciones {
 	private static File fiPuntData = new File("./src/datos/puntuaciones.dat");
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		boolean check;
-		Calendar fecha = new GregorianCalendar(2005, 11, 5);
-		Puntuacion alberto = new Puntuacion("Alberto",11,5,fecha);
+		
+		Calendar fecha = new GregorianCalendar(2105, 11, 5);
+		Puntuacion alberto = new Puntuacion("Albto",1,5,fecha);
 		nuevo(alberto);
-	
 		muestraPuntuaciones();
 		
 		
