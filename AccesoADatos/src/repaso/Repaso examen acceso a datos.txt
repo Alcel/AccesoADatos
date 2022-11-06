@@ -1,0 +1,3 @@
+- Dos ficheros con datos separados por comas 
+o por lineas
+- Introducimos esos datos en objetos
