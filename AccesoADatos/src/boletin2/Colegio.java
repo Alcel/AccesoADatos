@@ -17,6 +17,7 @@ public class Colegio {
 	
 	// int (4) + String (NOMBRE_SIZE * 2) + float (4)
 	// Cada caracter del String son 2 bytes, por eso se multiplica por 2
+	//En otras palabras 4 bytes de int,4 de float y 2 por letra = 40 letras(char)
 	private static final int REGISTRO_SIZE = 4 + (NOMBRE_LENGTH * 2) + 4;
 	
 	public static void main(String[] args) {
@@ -56,7 +57,7 @@ public class Colegio {
 				
 				
 				
-				//ESTE SOY YO//
+				
 				// El identificador ya existe
 				if (rafFichero.getFilePointer() <= rafFichero.length() && idFichero != 0) {
 					System.err.println("No se ha podido crear nuevo alumno, el identificador indicado ya existe");
