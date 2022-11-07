@@ -1,5 +1,6 @@
 package boletin1;
 
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,6 +8,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/*******************************************/
+/* Este programa hace el cifrado correctamente,
+ * pero no nombra el fichero de salida según las instrucciones.
+ */
 public class Cifrador {
 	public static void main(String[] args) throws IOException {
 		File fichero = new File("./src/datos/"+args[0]);

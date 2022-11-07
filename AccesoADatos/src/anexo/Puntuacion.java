@@ -74,7 +74,6 @@ public class Puntuacion implements Serializable{
 	
 	public String toString() {
 		return "La puntuacion "+nombre+", tiene un tiempo de "+minutos+" minutos y "+segundos+" segundos."
-				+ " Esta puntuacion fue realizada el "+fecha;
-		
+				+ " Esta puntuacion fue realizada el "+fecha;		
 	}
 }
