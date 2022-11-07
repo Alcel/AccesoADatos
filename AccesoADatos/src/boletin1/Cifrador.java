@@ -15,7 +15,8 @@ import java.io.IOException;
 public class Cifrador {
 	public static void main(String[] args) throws IOException {
 		File fichero = new File("./src/datos/"+args[0]);
-		File ficheroAEscribir = new File("./src/datos/"+args[0]+".nuevo");
+		String nombreaAr=args[0].substring(0,args[0].lastIndexOf("."));
+		File ficheroAEscribir = new File("./src/datos/"+nombreaAr+".nuevo.txt");
 		FileReader lectorPrincipal = new FileReader(fichero);
 		FileWriter escritorPrincipal = new FileWriter(ficheroAEscribir);
 		BufferedReader lectorBuffered = new BufferedReader(lectorPrincipal);
