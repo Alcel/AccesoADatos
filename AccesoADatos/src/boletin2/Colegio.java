@@ -54,6 +54,9 @@ public class Colegio {
 					idFichero = rafFichero.readInt();
 				}
 				
+				
+				
+				//ESTE SOY YO//
 				// El identificador ya existe
 				if (rafFichero.getFilePointer() <= rafFichero.length() && idFichero != 0) {
 					System.err.println("No se ha podido crear nuevo alumno, el identificador indicado ya existe");
