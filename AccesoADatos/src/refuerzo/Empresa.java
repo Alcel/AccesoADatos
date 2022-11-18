@@ -16,12 +16,31 @@ public class Empresa {
 	
 	public static void main(String[] args) {
 		
-		//modificador(5,"Rudolf",400.3);
+		//modificador(7,"Rudolfito",2002.3);
+		eliminador(6);
 		lector();
 		
 	}
 	
 	public static void eliminador (int id) {
+		File fichero = new File(DATOS);
+		int num;
+		try {
+			RandomAccessFile raf = new RandomAccessFile(fichero, "rw");
+			raf.seek(id*64);
+			raf.writeInt(0);
+			/*while(raf.getFilePointer()<raf.length()) {
+				raf.skipBytes(64);
+				num=raf.readInt();
+				raf.writeInt(num-1);
+				
+			}*/
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -71,11 +90,14 @@ public class Empresa {
 				posicion=(id-1)*TAMANIO_REGISTRO;
 				raf.seek(posicion);
 				raf.skipBytes(4);
+				
+				for(int i=0;i<NOMBRE_LENGTH-nuevoNombre.length();i++) {
+					raf.writeChars(" ");
+				}
 				raf.writeChars(nuevoNombre);
 				raf.skipBytes(4);
 				raf.skipBytes(28);
 				raf.writeDouble(nuevoSueldo);
-				
 				raf.close();
 				
 				
