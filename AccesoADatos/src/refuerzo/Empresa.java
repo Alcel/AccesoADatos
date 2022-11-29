@@ -16,8 +16,8 @@ public class Empresa {
 	
 	public static void main(String[] args) {
 		
-		//modificador(7,"Rudolfito",2002.3);
-		eliminador(6);
+		//modificador(8,"Rudolfo",200.3);
+		//eliminador(7);
 		lector();
 		
 	}
@@ -57,6 +57,7 @@ public class Empresa {
 			RandomAccessFile raf = new RandomAccessFile(fichero, "r");
 			while(raf.getFilePointer()<raf.length()) {
 				numEmpleado = raf.readInt();
+				if(numEmpleado>0) {
 				for(int i=0; i<NOMBRE_LENGTH;i++) {
 					nombre[i]=raf.readChar();
 				}
@@ -68,7 +69,9 @@ public class Empresa {
 				sCargo = String.valueOf(cargo).trim();
 				sueldo = raf.readDouble();
 				System.out.printf("\n%11d%10s%5d%15s  %5.2f",numEmpleado, sNombre, edad, sCargo, sueldo);
-			}
+				}
+				raf.skipBytes(60);
+				}
 			raf.close();
 			
 			
@@ -111,6 +114,44 @@ public class Empresa {
 			System.err.println("Este metodo no esta hecho para eliminar. Introduzca un id mayor que 0.");
 		}
 	}
-	public static void intercambiador (int idEmp1, int idEmp2) {
+	public static void intercambiador (int idEmp1, int idEmp2) { /*Esta a medio hacer*/
+		long posicion=0;
+		String auxNombre;
+		int auxEdad;
+		String auxEmpleo;
+		int auxSueldo;
+		String sNombre;
+		String sCargo;
+		Double sueldo;
+		char [] nombre = new char[NOMBRE_LENGTH];
+		char [] cargo = new char[CARGO_LENGTH];
+		File fichero = new File(DATOS);
+		/*
+		try {
+			RandomAccessFile raf = new RandomAccessFile(fichero, "r");
+			while(raf.getFilePointer()<raf.length()) {
+				idEmp1 = raf.readInt();
+				for(int i=0; i<NOMBRE_LENGTH;i++) {
+					nombre[i]=raf.readChar();
+				}
+				sNombre = String.valueOf(nombre).trim();
+				edad = raf.readInt();
+				for(int i = 0; i<cargo.length;i++) {
+					cargo[i]=raf.readChar();
+				}
+				sCargo = String.valueOf(cargo).trim();
+				sueldo = raf.readDouble();
+				System.out.printf("\n%11d%10s%5d%15s  %5.2f",numEmpleado, sNombre, edad, sCargo, sueldo);
+			}
+			raf.close();
+			
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
 	}
 }
