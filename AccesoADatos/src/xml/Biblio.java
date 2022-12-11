@@ -1,24 +1,30 @@
 package xml;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class Biblio {
 	private static String RUTA_FICHERO="./src/datos/biblioteca.xml";
-	
+
 	public static void main(String[] args) {
-		listado();
+		//listado();
+		//extremos();
+		//coautoria();
 	}
-	
+
 	public static void listado() {
 		DocumentBuilderFactory dbf= DocumentBuilderFactory.newInstance();
 		DocumentBuilder db;
@@ -27,14 +33,113 @@ public class Biblio {
 			db = dbf.newDocumentBuilder();
 			documento = db.parse(new File(RUTA_FICHERO));
 			NodeList lista=documento.getElementsByTagName("libro");
+			NodeList listaAutores;
+			NodeList listaAutor;
+			Node libro;
+			Node autor;
+			NodeList listalibros;
+			String[][] autores =  new String[50][50];
 			
-			for(int i=0;i<lista.getLength();i++) {
-				Node nodo = lista.item(i);
-				String nodoS=nodo.getFirstChild().getNodeValue();
-				System.out.println(nodoS);
+
+			for(int j =0;j<lista.getLength();j++) {
+				libro =lista.item(j);
+				listalibros = libro.getChildNodes();
+				for(int i=0;i<listalibros.getLength();i++) {
+					Node nodo = listalibros.item(i);
+					if(nodo.getNodeType()==Node.ELEMENT_NODE) {
+						if(nodo.getNodeName().equals("titulo")) {
+							System.out.print(nodo.getFirstChild().getNodeValue());
+						}
+						if(nodo.getNodeName().equals("editorial")) {
+							System.out.println("  ("+nodo.getFirstChild().getNodeValue()+")");
+							for(int z=0;z<autores.length;z++) {
+								if(autores[j][z]!=null) {
+									System.out.println("  -"+autores[j][z]);
+	
+								}
+							}
+							System.out.println();
+						}
+						if(nodo.getNodeName().equals("autores")) {
+							listaAutores=nodo.getChildNodes();
+							for(int y=0;y<listaAutores.getLength();y++) {
+								autor=listaAutores.item(y);
+								if(autor.getNodeType()==Node.ELEMENT_NODE) {
+									autores[j][y]=autor.getFirstChild().getNodeValue();
+									
+									
+								}
+							}
+						}
+						
+
+					}
+
+				}
+
 			}
 		} catch (ParserConfigurationException e) {
+
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	public static void extremos() {
+		DocumentBuilderFactory dbf= DocumentBuilderFactory.newInstance();
+		DocumentBuilder db;
+		Document documento;
+		Float pCaro=0F;
+		Float pBarato=100F;
+		Float precio=0F;
+		String nCaro="";
+		String nBarato="";
+		String nombre="";
+		try {
+			db = dbf.newDocumentBuilder();
+			documento = db.parse(new File(RUTA_FICHERO));
+			NodeList lista=documento.getElementsByTagName("libro");
+			Node libro;
+			NodeList listalibros;
 			
+			
+			
+
+			for(int j =0;j<lista.getLength();j++) {
+				libro =lista.item(j);
+				listalibros = libro.getChildNodes();
+				for(int i=0;i<listalibros.getLength();i++) {
+					Node nodo = listalibros.item(i);
+					if(nodo.getNodeType()==Node.ELEMENT_NODE) {
+						if(nodo.getNodeName().equals("titulo")) {
+							nombre=nodo.getFirstChild().getNodeValue();
+						}
+						if(nodo.getNodeName().equals("precio")) {
+							precio=Float.valueOf(nodo.getFirstChild().getNodeValue());
+							
+							if(precio<pBarato) {
+								pBarato=precio;
+								nBarato=nombre;
+							}
+							if(precio>pCaro) {
+								pCaro=precio;
+								nCaro=nombre;
+							}
+						}
+
+					}
+					
+
+				}
+
+			}
+		} catch (ParserConfigurationException e) {
+
 			e.printStackTrace();
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
@@ -44,17 +149,119 @@ public class Biblio {
 			e.printStackTrace();
 		}
 		
-	}
-	public static void extremos() {
+		System.out.println("El mas barato: "+nBarato+", "+pBarato);
+		System.out.println("El mas caro: "+nCaro+", "+pCaro);
 		
+
 	}
 	public static void coautoria() {
-		
+		DocumentBuilderFactory dbf= DocumentBuilderFactory.newInstance();
+		DocumentBuilder db;
+		Document documento;
+		System.out.println("Los libros con coautoria son:");
+		try {
+			db = dbf.newDocumentBuilder();
+			documento = db.parse(new File(RUTA_FICHERO));
+			NodeList lista=documento.getElementsByTagName("libro");
+			NodeList listaAutores;
+			NodeList listaAutor;
+			Node libro;
+			Node autor;
+			NodeList listalibros;
+			String titulo="";
+			int cantidad=0;
+			
+
+			for(int j =0;j<lista.getLength();j++) {
+				
+				libro =lista.item(j);
+				listalibros = libro.getChildNodes();
+				for(int i=0;i<listalibros.getLength();i++) {
+					Node nodo = listalibros.item(i);
+					if(nodo.getNodeType()==Node.ELEMENT_NODE) {
+						if(nodo.getNodeName().equals("titulo")) {
+							titulo=nodo.getFirstChild().getNodeValue();
+						}
+						
+						}
+						if(nodo.getNodeName().equals("autores")) {
+							listaAutores=nodo.getChildNodes();
+							for(int y=0;y<listaAutores.getLength();y++) {
+								autor=listaAutores.item(y);
+								if(autor.getNodeType()==Node.ELEMENT_NODE) {
+									cantidad++;
+								}
+							}
+							
+						}
+						if(cantidad>2) {
+							System.out.println("-"+titulo);
+							cantidad=0;
+						
+
+					}
+
+				}
+
+			}
+		} catch (ParserConfigurationException e) {
+
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
 	}
 	public static void buscar(String isbn) {
-		
+
 	}
 	public static void reducir() {
+
+	}
+	public static void aumentar(String titulo, String editorial, double precio, String[]
+			autores, String[] autoras) {
+		RandomAccessFile fichero;
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db;
+		Document documento;
+		DOMImplementation arbol;
+		Element eltoRaiz;
 		
+		char tituloChArr[] = new char[30];
+		String tituloS ="";
+		
+		try {
+			fichero = new RandomAccessFile(RUTA_FICHERO, "r");
+			db = dbf.newDocumentBuilder();
+			arbol = db.getDOMImplementation();
+			documento = arbol.createDocument(null, "biblioteca", null);
+			documento.setXmlVersion("1.0");
+			eltoRaiz = documento.getDocumentElement();
+			
+			while(fichero.getFilePointer()<fichero.length()) {
+				for(int i = 0;i<tituloChArr.length;i++) {
+					tituloChArr[i]=fichero.readChar();
+				}
+				tituloS= new String(tituloChArr).trim();
+				
+				
+			}
+			
+			
+			
+			
+			
+		} catch (FileNotFoundException fnfe) {
+			System.err.println("El archivo de ruta "+RUTA_FICHERO+" no existe");
+		} catch (ParserConfigurationException pce) {
+			System.err.println("Error en el documentBuilder");
+		} catch (IOException ioe) {
+			System.err.println("Error de entrada-salida");
+		}
 	}
 }
