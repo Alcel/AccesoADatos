@@ -22,7 +22,7 @@ public class Biblio {
 	public static void main(String[] args) {
 		//listado();
 		//extremos();
-		//coautoria();
+	coautoria();
 	}
 
 	public static void listado() {
@@ -39,7 +39,6 @@ public class Biblio {
 			Node autor;
 			NodeList listalibros;
 			String[][] autores =  new String[50][50];
-			
 
 			for(int j =0;j<lista.getLength();j++) {
 				libro =lista.item(j);
@@ -55,7 +54,6 @@ public class Biblio {
 							for(int z=0;z<autores.length;z++) {
 								if(autores[j][z]!=null) {
 									System.out.println("  -"+autores[j][z]);
-	
 								}
 							}
 							System.out.println();
@@ -66,17 +64,11 @@ public class Biblio {
 								autor=listaAutores.item(y);
 								if(autor.getNodeType()==Node.ELEMENT_NODE) {
 									autores[j][y]=autor.getFirstChild().getNodeValue();
-									
-									
 								}
 							}
 						}
-						
-
 					}
-
 				}
-
 			}
 		} catch (ParserConfigurationException e) {
 
@@ -205,7 +197,7 @@ public class Biblio {
 
 			}
 		} catch (ParserConfigurationException e) {
-
+ 
 			e.printStackTrace();
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
@@ -225,43 +217,73 @@ public class Biblio {
 	}
 	public static void aumentar(String titulo, String editorial, double precio, String[]
 			autores, String[] autoras) {
-		RandomAccessFile fichero;
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilderFactory dbf= DocumentBuilderFactory.newInstance();
 		DocumentBuilder db;
 		Document documento;
-		DOMImplementation arbol;
-		Element eltoRaiz;
+		Element root;
+		Element libro;
+		Element tituloXML;
+		Element autoresXML;
+		Element autorXML;
+		Element generoXML;
+		Element editorialXML;
+		Element precioXML;
 		
-		char tituloChArr[] = new char[30];
-		String tituloS ="";
 		
 		try {
-			fichero = new RandomAccessFile(RUTA_FICHERO, "r");
 			db = dbf.newDocumentBuilder();
-			arbol = db.getDOMImplementation();
-			documento = arbol.createDocument(null, "biblioteca", null);
-			documento.setXmlVersion("1.0");
-			eltoRaiz = documento.getDocumentElement();
+			documento = db.parse(new File(RUTA_FICHERO));
+			root = documento.getDocumentElement();
+			libro = documento.createElement("libro");
 			
-			while(fichero.getFilePointer()<fichero.length()) {
-				for(int i = 0;i<tituloChArr.length;i++) {
-					tituloChArr[i]=fichero.readChar();
-				}
-				tituloS= new String(tituloChArr).trim();
-				
+			tituloXML = documento.createElement("titulo");
+			tituloXML.setTextContent(titulo);
+			libro.appendChild(tituloXML);
+			
+			autoresXML = documento.createElement("autores");
+			
+			for(int i=0;i<autores.length;i++) {
+				autorXML = documento.createElement("autor");
+				autoresXML.appendChild(autorXML);
+				autoresXML.setAttribute("sexo","masculino");
 				
 			}
+			for(int i=0;i<autoras.length;i++) {
+				autorXML = documento.createElement("autor");
+				autoresXML.appendChild(autorXML);
+				autoresXML.setAttribute("sexo","femenino");
+			}
+			
+			generoXML = documento.createElement("genero");
+			editorialXML = documento.createElement("editorial");
+			precioXML = documento.createElement("precio");
 			
 			
 			
 			
-			
-		} catch (FileNotFoundException fnfe) {
-			System.err.println("El archivo de ruta "+RUTA_FICHERO+" no existe");
-		} catch (ParserConfigurationException pce) {
-			System.err.println("Error en el documentBuilder");
-		} catch (IOException ioe) {
-			System.err.println("Error de entrada-salida");
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private static void quitarEspaciosEnBlanco(Node node) {
+		NodeList listaHijos = node.getChildNodes();
+
+		for (int i = 0; i < listaHijos.getLength(); ++i) {
+			Node hijo = listaHijos.item(i);
+
+			if (hijo.getNodeType() == Node.TEXT_NODE) {
+				hijo.setTextContent(hijo.getTextContent().trim());
+			}
+
+			quitarEspaciosEnBlanco(hijo);
 		}
 	}
 }

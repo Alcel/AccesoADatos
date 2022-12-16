@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class Empleado implements Serializable {
 	private static final long serialVersionUID = 4089173595140384300L;
-	private String nombre;
-	private int edad;
-	private double sueldo;
-	private boolean jubilado;
+	private String nombre;  //2*c
+	private int edad;		//4
+	private double sueldo;  //8
+	private boolean jubilado; //4
 	
 	public Empleado() {
 		super();
