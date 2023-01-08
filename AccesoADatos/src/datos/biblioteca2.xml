@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<biblioteca>
+    <libro>
+        <titulo>Los renglones torcidos de Dios</titulo>
+        <autor>Torcuato Luca de Tena</autor>
+        <precio>9.80 euro</precio>
+    </libro>
+    <libro>
+        <titulo>La asertividad para gente extraordinaria</titulo>
+        <autor>Eva Bach</autor>
+        <autor>Anna Forés</autor>
+        <precio>15.25 dolar</precio>
+    </libro>
+    <libro>
+        <titulo>La catedral del mar</titulo>
+        <autor>Ildefonso Falcones</autor>
+        <precio>15.4</precio>
+    </libro>
+    <libro>
+        <titulo>El ocho</titulo>
+        <autor>Katherine Neville</autor>
+        <precio>2.1</precio>
+    </libro>
+    <libro>
+        <titulo>Conversaciones sobre la república</titulo>
+        <autor>Julio Anguita</autor>
+        <autor>Carmen Reina</autor>
+        <precio>15.95</precio>
+    </libro>
+    <libro>
+        <titulo>El gran diseño</titulo>
+        <autor>Stephen Hawking</autor>
+        <autor>Leonard Mlodinow</autor>
+        <precio>5 dolar</precio>
+    </libro>
+    <libro>
+        <titulo>XML</titulo>
+        <autor>Juan Diego Gutiérrez Gallardo</autor>
+        <precio>24.7 euro</precio>
+    </libro>
+</biblioteca>

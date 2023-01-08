@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <biblioteca xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="biblioteca.xsd">
-	<libro isbn="978-84-09349-7">
-		<titulo>Los renglones torcidos de Dios</titulo>
-		<autores>
-			<autor sexo="masculino">Torcuato Luca de Tena</autor>
-		</autores>
-		<genero>novela</genero>
-		<editorial>Austral</editorial>
-		<precio moneda="euro">9.80</precio>
-		<paginas>440</paginas>
-		<tema>Una novela honesta sobre la locura, que sigue manteniendo intacta su vigencia</tema>
-	</libro>
-	<libro isbn="978-84-96981-11-9">
-		<titulo>La asertividad para gente extraordinaria</titulo>
-		<autores>
-			<autor sexo="femenino">Eva Bach</autor>
-			<autor sexo="femenino">Anna Forés</autor>
-		</autores>
-		<genero>autoayuda</genero>
-		<editorial>Plataforma</editorial>
-		<precio moneda="dolar">15.25</precio>
-		<paginas>275</paginas>
-		<tema>Con este libro, las autoras nos regalan un tratado esencial sobre comunicación y relaciones humanas</tema>
-	</libro>
+    <libro isbn="978-84-09349-7">
+        <titulo>Los renglones torcidos de Dios</titulo>
+        <autores>
+            <autor sexo="masculino">Torcuato Luca de Tena</autor>
+        </autores>
+        <genero>novela</genero>
+        <editorial>Austral</editorial>
+        <precio moneda="euro">9.80</precio>
+        <paginas>440</paginas>
+        <tema>Una novela honesta sobre la locura, que sigue manteniendo intacta su vigencia</tema>
+    </libro>
+    <libro isbn="978-84-96981-11-9">
+        <titulo>La asertividad para gente extraordinaria</titulo>
+        <autores>
+            <autor sexo="femenino">Eva Bach</autor>
+            <autor sexo="femenino">Anna Forés</autor>
+        </autores>
+        <genero>autoayuda</genero>
+        <editorial>Plataforma</editorial>
+        <precio moneda="dolar">15.25</precio>
+        <paginas>275</paginas>
+        <tema>Con este libro, las autoras nos regalan un tratado esencial sobre comunicación y relaciones humanas</tema>
+    </libro>
     <libro>
         <titulo>La catedral del mar</titulo>
         <autores>
@@ -61,16 +61,28 @@
         <editorial>Crítica</editorial>
         <precio moneda="dolar">5</precio>
     </libro>
-	<libro isbn="84-415-1576-X">
-		<titulo>XML</titulo>
-		<coleccion>Manual imprescindible</coleccion>
-		<autores>
-			<autor sexo="masculino">Juan Diego Gutiérrez Gallardo</autor>
-		</autores>
-		<genero>informática</genero>
-		<editorial>Anaya multimedia</editorial>
-		<precio moneda="euro">24.7</precio>
-		<paginas>350</paginas>
-		<tema>Una aproximación muy general, pero directa, al lenguaje XML</tema>
-	</libro>
+    <libro isbn="84-415-1576-X">
+        <titulo>XML</titulo>
+        <coleccion>Manual imprescindible</coleccion>
+        <autores>
+            <autor sexo="masculino">Juan Diego Gutiérrez Gallardo</autor>
+        </autores>
+        <genero>informática</genero>
+        <editorial>Anaya multimedia</editorial>
+        <precio moneda="euro">24.7</precio>
+        <paginas>350</paginas>
+        <tema>Una aproximación muy general, pero directa, al lenguaje XML</tema>
+    </libro>
+    <libro>
+        <titulo>El vivir</titulo>
+        <autores>
+            <autor sexo="masculino">Juan</autor>
+            <autor sexo="masculino">Alfonso</autor>
+            <autor sexo="femenino">Juana</autor>
+            <autor sexo="femenino">Alfonsa</autor>
+        </autores>
+        <genero/>
+        <editorial/>
+        <precio>22.2</precio>
+    </libro>
 </biblioteca>

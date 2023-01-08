@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+  <!-- Elemento raiz -->
+  <xs:element name="puntuaciones">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="puntuacion" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <!-- Elemento puntuacion -->
+  <xs:element name="puntuacion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="nombre" type="xs:string" maxOccurs="1"/>
+        <xs:element ref="tiempo"/>
+        <xs:element name="fecha" type="formatoFecha"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="tiempo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="min" type="xs:nonNegativeInteger" maxOccurs="1"/>
+        <xs:element name="seg" type="xs:nonNegativeInteger" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <!-- Restricciones -->
+  <xs:simpleType name="formatoFecha">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{2}/\d{2}/\d{2}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+</xs:schema>

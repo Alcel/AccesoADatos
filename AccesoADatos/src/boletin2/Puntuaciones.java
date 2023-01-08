@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
 import anexo.Puntuacion;
 
 
@@ -41,7 +42,6 @@ public class Puntuaciones {
 		FileInputStream fisNuevo = new FileInputStream(fiPuntData);
 		ObjectInputStream oisNuevo = null;
 		
-	
 		
 		//Declare las variables, incluidos los stream
 		
@@ -148,7 +148,6 @@ public class Puntuaciones {
 	public static void muestraPuntuaciones() throws IOException, ClassNotFoundException {
 				Puntuacion auxPunt;
 	
-		
 		FileInputStream fisNuevo = new FileInputStream(fiPuntData);
 		ObjectInputStream oisNuevo = null;
 		oisNuevo = new ObjectInputStream(fisNuevo);
