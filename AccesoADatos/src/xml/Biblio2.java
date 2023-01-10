@@ -224,6 +224,7 @@ class GestorBuscar extends org.xml.sax.helpers.DefaultHandler{
 	String nomTmp="";
 	String isbn="";
 	ArrayList listaIsbn= new ArrayList<>();
+	int cont =0;
 
 	public GestorBuscar() {
 		super();
@@ -233,17 +234,34 @@ class GestorBuscar extends org.xml.sax.helpers.DefaultHandler{
 	}
 	public void startElement(String uri, String nombre, String nombreC, Attributes atts) {
 		elemento = nombreC;
-		String aux;
-		if(atts.getLength()>0) {
-			for(int i=0;atts.getLength()>i;i++) {
-				if(atts.getQName(i)=="isbn") {
-					aux = atts.getValue(i);
+		String aux="";
+		
+		if(atts.getLength()>0) {	
+				if(atts.getQName(0)=="isbn") {
+					aux = atts.getValue(0);
 					listaIsbn.add(aux);	
-				} else {
-					listaIsbn.add("?");
-				}
+				} else if(atts.getQName(0)!="xmlns:xsi"||atts.getQName(0)!="noNamespaceSchemaLocation"){
+					for(int i=0;i<listaIsbn.size();i++) {
+						if(i!=0&&listaIsbn.get(i-1)!=listaIsbn.get(i)&&!aux.isEmpty()) {
+							listaIsbn.add(cont,aux);
+							
+						}
+						else if(i==0&&!aux.isEmpty()){
+							listaIsbn.add(cont,aux);
+						}
+						
+					}
 			}
 		}
+		
+		if(listaIsbn.size()<cont) {
+			listaIsbn.add("?");
+		}
+		if(elemento=="autores") {
+			cont++;
+		}
+		
+		
 	}
 	
 	public void endElement(String uri, String nombre, String nombreC) {
@@ -258,7 +276,7 @@ class GestorBuscar extends org.xml.sax.helpers.DefaultHandler{
 	
 	public void endDocument() {
 		for (int i=0; i<listaIsbn.size(); i++) {
-			
+		System.out.println(listaIsbn.get(i));
 			if (listaIsbn.get(i).equals(isbn)) {
 				System.out.println("Tam isbn: "+listaIsbn.size());
 				System.out.println(titulos.get(i));
