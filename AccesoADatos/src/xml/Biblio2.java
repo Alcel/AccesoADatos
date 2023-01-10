@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -39,10 +40,24 @@ public class Biblio2 {
 //	}
 	
 	
+//	try {
+//		SAXParser procesadorXML = SAXParserFactory.newInstance().newSAXParser();
+//		GestorCoautoria miGestorCoautoria = new GestorCoautoria();
+//		procesadorXML.parse(new File(RUTA_FICHERO), miGestorCoautoria);
+//	} catch (ParserConfigurationException e) {
+//		e.printStackTrace();
+//	} catch (SAXException e) {
+//		e.printStackTrace();
+//	} catch (IOException e) {
+//		e.printStackTrace();
+//	}
+//	
+//	}
+	
 	try {
 		SAXParser procesadorXML = SAXParserFactory.newInstance().newSAXParser();
-		GestorCoautoria miGestorCoautoria = new GestorCoautoria();
-		procesadorXML.parse(new File(RUTA_FICHERO), miGestorCoautoria);
+		GestorBuscar miGestorBuscar = new GestorBuscar("978-84-96981-11-9");
+		procesadorXML.parse(new File(RUTA_FICHERO), miGestorBuscar);
 	} catch (ParserConfigurationException e) {
 		e.printStackTrace();
 	} catch (SAXException e) {
@@ -199,5 +214,64 @@ class GestorCoautoria extends org.xml.sax.helpers.DefaultHandler{
 	}
 }
 class GestorBuscar extends org.xml.sax.helpers.DefaultHandler{
+	public static String car;
+	static String ruta;
+	static String elemento;
+	float precioAux=0F;
+	ArrayList <String> coautados = new ArrayList<String>();
+	ArrayList<String> titulos = new ArrayList();
+	ArrayList<String> editoriales = new ArrayList();
+	String nomTmp="";
+	String isbn="";
+	ArrayList listaIsbn= new ArrayList<>();
 
+	public GestorBuscar() {
+		super();
+	}
+	public GestorBuscar(String isbn) {
+		this.isbn=isbn;
+	}
+	public void startElement(String uri, String nombre, String nombreC, Attributes atts) {
+		elemento = nombreC;
+		String aux;
+		if(atts.getLength()>0) {
+			for(int i=0;atts.getLength()>i;i++) {
+				if(atts.getQName(i)=="isbn") {
+					aux = atts.getValue(i);
+					listaIsbn.add(aux);	
+				} else {
+					listaIsbn.add("?");
+				}
+			}
+		}
+	}
+	
+	public void endElement(String uri, String nombre, String nombreC) {
+		if(nombreC.equals("titulo")) {
+			titulos.add(car);
+		}
+		
+		if (nombreC.equals("editorial")) {
+			editoriales.add(car);
+		}
+	}
+	
+	public void endDocument() {
+		for (int i=0; i<listaIsbn.size(); i++) {
+			
+			if (listaIsbn.get(i).equals(isbn)) {
+				System.out.println("Tam isbn: "+listaIsbn.size());
+				System.out.println(titulos.get(i));
+			}
+		}
+	}
+	
+	public void characters(char[] ch, int start, int length) throws SAXException {
+		// Quitamos los saltos de línea y tabuladores y lo imprimimos
+		car = new String(ch, start, length);
+		car = car.replaceAll("[\t\n]", "");
+		//System.out.println("\t\tCaracteres: " + car);
+	}
+	
+	
 }

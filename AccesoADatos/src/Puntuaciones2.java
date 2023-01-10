@@ -86,15 +86,19 @@ public class Puntuaciones2 {
 			
 			DOMImplementation arbol = db.getDOMImplementation();
 
-			Document documento = arbol.createDocument("puntuaciones.xsd", "puntuaciones", null);
+			Document documento = arbol.createDocument(null, "puntuaciones", null);
 			documento.setXmlVersion("1.0");
 			Element eltoRaiz = documento.getDocumentElement();
 			Element elemntAux; 
 			Element puntuacion; 
 			Element tiempo; 
-		
+			eltoRaiz.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+			eltoRaiz.setAttribute("xsi:noNamespaceSchemaLocation", "puntuaciones.xsd");
+			
+			
 
 			for (int i =0;i<nombres.size();i++) {
+				
 
 					
 					puntuacion = documento.createElement("puntuacion");
