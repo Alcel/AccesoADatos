@@ -16,47 +16,52 @@ public class Biblio2 {
 	private static String RUTA_FICHERO ="./src/datos/biblioteca.xml";
 	public static void main(String[] args) {
 	
-//	try {
-//		SAXParser procesadorXML = SAXParserFactory.newInstance().newSAXParser();
-//		GestorListado miGestorListado = new GestorListado();
-//		procesadorXML.parse(new File(RUTA_FICHERO), miGestorListado);
-//	} catch (ParserConfigurationException e) {
-//		e.printStackTrace();
-//	} catch (SAXException e) {
-//		e.printStackTrace();
-//	} catch (IOException e) {
-//		e.printStackTrace();
-//	}
-//	try {
-//		SAXParser procesadorXML = SAXParserFactory.newInstance().newSAXParser();
-//		GestorExtremos miGestorExtremos = new GestorExtremos();
-//		procesadorXML.parse(new File(RUTA_FICHERO), miGestorExtremos);
-//	} catch (ParserConfigurationException e) {
-//		e.printStackTrace();
-//	} catch (SAXException e) {
-//		e.printStackTrace();
-//	} catch (IOException e) {
-//		e.printStackTrace();
-//	}
-	
-	
-//	try {
-//		SAXParser procesadorXML = SAXParserFactory.newInstance().newSAXParser();
-//		GestorCoautoria miGestorCoautoria = new GestorCoautoria();
-//		procesadorXML.parse(new File(RUTA_FICHERO), miGestorCoautoria);
-//	} catch (ParserConfigurationException e) {
-//		e.printStackTrace();
-//	} catch (SAXException e) {
-//		e.printStackTrace();
-//	} catch (IOException e) {
-//		e.printStackTrace();
-//	}
-//	
-//	}
+	try {
+		SAXParser procesadorXML = SAXParserFactory.newInstance().newSAXParser();
+		GestorListado miGestorListado = new GestorListado();
+		procesadorXML.parse(new File(RUTA_FICHERO), miGestorListado);
+	} catch (ParserConfigurationException e) {
+		e.printStackTrace();
+	} catch (SAXException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	System.out.println();
+	System.out.println("////////////////////////////////////////////////////");
+	System.out.println();
+	try {
+		SAXParser procesadorXML = SAXParserFactory.newInstance().newSAXParser();
+		GestorExtremos miGestorExtremos = new GestorExtremos();
+		procesadorXML.parse(new File(RUTA_FICHERO), miGestorExtremos);
+	} catch (ParserConfigurationException e) {
+		e.printStackTrace();
+	} catch (SAXException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	System.out.println();
+	System.out.println("////////////////////////////////////////////////////");
+	System.out.println();
+	try {
+		SAXParser procesadorXML = SAXParserFactory.newInstance().newSAXParser();
+		GestorCoautoria miGestorCoautoria = new GestorCoautoria();
+		procesadorXML.parse(new File(RUTA_FICHERO), miGestorCoautoria);
+	} catch (ParserConfigurationException e) {
+		e.printStackTrace();
+	} catch (SAXException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	System.out.println();
+	System.out.println("////////////////////////////////////////////////////");
+	System.out.println();
 	
 	try {
 		SAXParser procesadorXML = SAXParserFactory.newInstance().newSAXParser();
-		GestorBuscar miGestorBuscar = new GestorBuscar("978-84-96981-11-9");
+		GestorBuscar miGestorBuscar = new GestorBuscar("84-415-1576-X");
 		procesadorXML.parse(new File(RUTA_FICHERO), miGestorBuscar);
 	} catch (ParserConfigurationException e) {
 		e.printStackTrace();
@@ -65,7 +70,6 @@ public class Biblio2 {
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
-	
 	}
 }
 class GestorListado extends org.xml.sax.helpers.DefaultHandler {
@@ -78,17 +82,11 @@ class GestorListado extends org.xml.sax.helpers.DefaultHandler {
 	public void startElement(String uri, String nombre, String nombreC, Attributes atts) {
 		elemento = nombreC;
 	}
-	
 
 
 	public void characters(char[] ch, int start, int length) throws SAXException {
-		// Quitamos los saltos de línea y tabuladores y lo imprimimos
 		String car = new String(ch, start, length);
-		
-		
-		
 		car = car.replaceAll("[\t\n]", "");
-		//System.out.println(elemento);
 		
 		if(car.trim().length()>0) {
 			
@@ -128,16 +126,14 @@ class GestorExtremos extends org.xml.sax.helpers.DefaultHandler{
 
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		float convPre=0.0F;
-		
 		String car = new String(ch, start, length);
 		car = car.replaceAll("[\t\n]", "");
-		
+	
 		if(car.trim().length()>0) {
 			
 			if(elemento=="titulo") {
 				nomTmp=car;
 			}
-			
 			if(elemento=="precio") {
 				convPre=Float.parseFloat(car);
 				if(convPre>maxPrecio) {
@@ -146,18 +142,18 @@ class GestorExtremos extends org.xml.sax.helpers.DefaultHandler{
 				}
 				if(convPre<minPrecio) {
 					minPrecio=convPre;
-					nomMen=nomTmp;
-					
+					nomMen=nomTmp;	
 				}
 			}
 		}
 	}
+	
 	public void endDocument() {
 		System.out.println("El más barato:"+nomMen +", "+minPrecio);
 		System.out.println("El más caro:"+nomMay +", "+maxPrecio);
 	}
-	
 }
+
 class GestorCoautoria extends org.xml.sax.helpers.DefaultHandler{
 	static String ruta;
 	static String elemento;
@@ -176,19 +172,15 @@ class GestorCoautoria extends org.xml.sax.helpers.DefaultHandler{
 
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		float convPre=0.0F;
-		
-		
 		String car = new String(ch, start, length);
 		car = car.replaceAll("[\t\n]", "");
 		
 		if(car.trim().length()>0) {
-			
 			if(elemento=="titulo") {
 				nomTmp=car;
 				fin=true;
 				cant=0;
 			}
-			
 			if(elemento=="autor") {
 				cant++;
 			}
@@ -198,15 +190,14 @@ class GestorCoautoria extends org.xml.sax.helpers.DefaultHandler{
 
 						fin=false;
 					}
-					
 				}
 				if(fin) {
 					coautados.add(nomTmp);
-					
 				}
 			}
 		}
 	}
+	
 	public void endDocument() {
 		for(int i=0;i<coautados.size();i++) {
 			System.out.println(coautados.get(i));
@@ -225,7 +216,6 @@ class GestorBuscar extends org.xml.sax.helpers.DefaultHandler{
 	String isbn="";
 	ArrayList listaIsbn= new ArrayList<>();
 	int cont =0;
-
 	public GestorBuscar() {
 		super();
 	}
@@ -235,24 +225,22 @@ class GestorBuscar extends org.xml.sax.helpers.DefaultHandler{
 	public void startElement(String uri, String nombre, String nombreC, Attributes atts) {
 		elemento = nombreC;
 		String aux="";
-		
+
 		if(atts.getLength()>0) {	
-				if(atts.getQName(0)=="isbn") {
-					aux = atts.getValue(0);
-					listaIsbn.add(aux);	
-				} else if(atts.getQName(0)!="xmlns:xsi"||atts.getQName(0)!="noNamespaceSchemaLocation"){
-					for(int i=0;i<listaIsbn.size();i++) {
-						if(i!=0&&listaIsbn.get(i-1)!=listaIsbn.get(i)&&!aux.isEmpty()) {
-							listaIsbn.add(cont,aux);
-							
-						}
-						else if(i==0&&!aux.isEmpty()){
-							listaIsbn.add(cont,aux);
-						}
-						
-					}
-			}
-		}
+			if(atts.getQName(0)=="isbn") {
+				aux = atts.getValue(0);
+				listaIsbn.add(aux);	
+				} 
+//			else if(atts.getQName(0)!="xmlns:xsi"||atts.getQName(0)!="noNamespaceSchemaLocation"){
+//				for(int i=0;i<listaIsbn.size();i++) {
+//					if(i!=0&&listaIsbn.get(i-1)!=listaIsbn.get(i)&&!aux.isEmpty()) {
+//						listaIsbn.add(cont,aux);
+//					}
+//					else if(i==0&&!aux.isEmpty()){
+//						listaIsbn.add(cont,aux);
+//					}
+				}
+			
 		
 		if(listaIsbn.size()<cont) {
 			listaIsbn.add("?");
@@ -260,36 +248,25 @@ class GestorBuscar extends org.xml.sax.helpers.DefaultHandler{
 		if(elemento=="autores") {
 			cont++;
 		}
-		
-		
 	}
-	
 	public void endElement(String uri, String nombre, String nombreC) {
 		if(nombreC.equals("titulo")) {
 			titulos.add(car);
 		}
-		
 		if (nombreC.equals("editorial")) {
 			editoriales.add(car);
 		}
 	}
-	
 	public void endDocument() {
 		for (int i=0; i<listaIsbn.size(); i++) {
-		System.out.println(listaIsbn.get(i));
 			if (listaIsbn.get(i).equals(isbn)) {
-				System.out.println("Tam isbn: "+listaIsbn.size());
-				System.out.println(titulos.get(i));
+				System.out.print(titulos.get(i));
+				System.out.println("   -"+editoriales.get(i));
 			}
 		}
 	}
-	
 	public void characters(char[] ch, int start, int length) throws SAXException {
-		// Quitamos los saltos de línea y tabuladores y lo imprimimos
 		car = new String(ch, start, length);
 		car = car.replaceAll("[\t\n]", "");
-		//System.out.println("\t\tCaracteres: " + car);
 	}
-	
-	
 }
