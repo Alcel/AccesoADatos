@@ -42,7 +42,10 @@ public class Xml2screen {
 
 }
 class Gestor extends org.xml.sax.helpers.DefaultHandler {
-
+	ArrayList<String> noC= new ArrayList<String>();
+	String espaciosEnBlacno= "";
+	String espacioEnBlanco=" ";
+	int contador=0;
 	@Override
 	public void startDocument() throws SAXException {
 		// TODO Auto-generated method stub
@@ -57,15 +60,33 @@ class Gestor extends org.xml.sax.helpers.DefaultHandler {
 
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-		System.out.println(qName+":");
-		System.out.println(); 
+		noC.add(qName);
+		
 		//Usar un contador que luego sirva para hacer un for que imprima espacios
 	}
 
 	@Override
 	public void endElement(String uri, String localName, String qName) throws SAXException {
 		// TODO Auto-generated method stub
-		super.endElement(uri, localName, qName);
+		if(noC.get((noC.size()-1))==qName){
+			System.out.println(qName+":");
+			noC.remove(noC.size()-1);
+		}
+		else {
+			System.out.println(qName);
+			
+			for(int i=0;i<noC.size();i++) {
+				if(noC.get(i)==qName) {
+					contador--;
+				}
+				else {
+					contador++;
+				}
+			}
+			System.out.println(qName+":");
+			System.out.println(); 
+		}
+		
 	}
 
 	@Override
