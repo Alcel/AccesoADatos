@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<holding>
+	<empresa>
+		<cif>A-11111111</cif>
+		<nombre>Potasa</nombre>
+		<localidad>Almería</localidad>
+		<encargado>Alfredo</encargado>
+		<suplente>Manolo</suplente>
+	</empresa>
+	<empresa>
+		<cif>B-22222222</cif>
+		<nombre>Famesa</nombre>
+		<localidad>Jaén</localidad>
+		<encargado>Luisa</encargado>
+		<suplente>Antonio</suplente>
+	</empresa>
+	<empresa>
+		<cif>C-33333333</cif>
+		<nombre>Tolesa</nombre>
+		<localidad>Málaga</localidad>
+		<encargado>Rodolfo</encargado>
+		<suplente>Esperanza</suplente>
+	</empresa>
+</holding>

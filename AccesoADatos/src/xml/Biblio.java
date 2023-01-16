@@ -45,7 +45,7 @@ public class Biblio {
 			//extremos();
 			//coautoria();
 			//buscar("84-415-1576-X");
-			aumentar("El vivir","Amaya",22.2, autores,autoras);
+			//aumentar("El vivir","Amaya",22.2, autores,autoras);
 			//reducir();
 		}
 		else {
