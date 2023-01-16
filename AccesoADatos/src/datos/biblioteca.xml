@@ -82,7 +82,19 @@
             <autor sexo="femenino">Alfonsa</autor>
         </autores>
         <genero/>
-        <editorial/>
+        <editorial>Amaya</editorial>
+        <precio>22.2</precio>
+    </libro>
+    <libro>
+        <titulo>El vivir</titulo>
+        <autores>
+            <autor sexo="masculino">Juan</autor>
+            <autor sexo="masculino">Alfonso</autor>
+            <autor sexo="femenino">Juana</autor>
+            <autor sexo="femenino">Alfonsa</autor>
+        </autores>
+        <genero/>
+        <editorial>Amaya</editorial>
         <precio>22.2</precio>
     </libro>
 </biblioteca>

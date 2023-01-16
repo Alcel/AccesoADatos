@@ -38,4 +38,20 @@
         <autor>Juan Diego Gutiérrez Gallardo</autor>
         <precio>24.7 euro</precio>
     </libro>
+    <libro>
+        <titulo>El vivir</titulo>
+        <autor>Juan</autor>
+        <autor>Alfonso</autor>
+        <autor>Juana</autor>
+        <autor>Alfonsa</autor>
+        <precio>22.2</precio>
+    </libro>
+    <libro>
+        <titulo>El vivir</titulo>
+        <autor>Juan</autor>
+        <autor>Alfonso</autor>
+        <autor>Juana</autor>
+        <autor>Alfonsa</autor>
+        <precio>22.2</precio>
+    </libro>
 </biblioteca>

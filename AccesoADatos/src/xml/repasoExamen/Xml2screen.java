@@ -46,6 +46,7 @@ class Gestor extends org.xml.sax.helpers.DefaultHandler {
 	String espaciosEnBlacno= "";
 	String espacioEnBlanco=" ";
 	int contador=0;
+	String car="";
 	@Override
 	public void startDocument() throws SAXException {
 		// TODO Auto-generated method stub
@@ -68,6 +69,7 @@ class Gestor extends org.xml.sax.helpers.DefaultHandler {
 	@Override
 	public void endElement(String uri, String localName, String qName) throws SAXException {
 		// TODO Auto-generated method stub
+		System.out.println(car);
 		if(noC.get((noC.size()-1))==qName){
 			System.out.println(qName+":");
 			noC.remove(noC.size()-1);
@@ -83,16 +85,16 @@ class Gestor extends org.xml.sax.helpers.DefaultHandler {
 					contador++;
 				}
 			}
-			System.out.println(qName+":");
-			System.out.println(); 
+			
+			
 		}
-		
 	}
 
 	@Override
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		// TODO Auto-generated method stub
-		super.characters(ch, start, length);
+		car = new String(ch, start, length);
+		car = car.replaceAll("[\t\n]", "");
 	}
 	
 }
