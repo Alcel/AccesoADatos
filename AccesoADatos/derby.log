@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed Feb 08 20:05:01 CET 2023:
+ Iniciando instancia a816c00e-0186-326a-baf0-00000ef8ed98 de Derby, versión The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): 
+en el directorio de base de datos C:\Users\Nico\git\AccesoADatos\AccesoADatos\src\db\consultorio.Apache con el cargador de clases jdk.internal.loader.ClassLoaders$AppClassLoader@6fb554cc
+Cargado desde file:/C:/Users/Nico/Desktop/2ºDam/Acceso%20a%20datos/db-derby-10.15.2.0-lib/lib/derby.jar
+java.vendor=Eclipse Adoptium
+java.runtime.version=17.0.2+8
+user.dir=C:\Users\Nico\git\AccesoADatos\AccesoADatos
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Cargador de clases de base de datos iniciado - derby.database.classpath=''

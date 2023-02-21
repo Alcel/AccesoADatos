@@ -1,0 +1,70 @@
+2023-02-11 10:28:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "Telefono" no encontrada
+Column "Telefono" not found [42122-214]
+	at com.h2database@2.1.214/org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at com.h2database@2.1.214/org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at com.h2database@2.1.214/org.h2.message.DbException.get(DbException.java:223)
+	at com.h2database@2.1.214/org.h2.message.DbException.get(DbException.java:199)
+	at com.h2database@2.1.214/org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at com.h2database@2.1.214/org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:301)
+	at Conectores.telefonos(Conectores.java:139)
+	at Conectores.main(Conectores.java:19)
+2023-02-11 10:28:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "Tfno" no encontrada
+Column "Tfno" not found [42122-214]
+	at com.h2database@2.1.214/org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at com.h2database@2.1.214/org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at com.h2database@2.1.214/org.h2.message.DbException.get(DbException.java:223)
+	at com.h2database@2.1.214/org.h2.message.DbException.get(DbException.java:199)
+	at com.h2database@2.1.214/org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at com.h2database@2.1.214/org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:301)
+	at Conectores.telefonos(Conectores.java:139)
+	at Conectores.main(Conectores.java:19)
+2023-02-11 12:32:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "Tnfo" no encontrada
+Column "Tnfo" not found [42122-214]
+	at com.h2database@2.1.214/org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at com.h2database@2.1.214/org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at com.h2database@2.1.214/org.h2.message.DbException.get(DbException.java:223)
+	at com.h2database@2.1.214/org.h2.message.DbException.get(DbException.java:199)
+	at com.h2database@2.1.214/org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at com.h2database@2.1.214/org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:301)
+	at Conectores.telefonos(Conectores.java:139)
+	at Conectores.main(Conectores.java:19)
+2023-02-11 12:37:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM Pacientes Where Nombre like [*]%a"
+Syntax error in SQL statement "SELECT * FROM Pacientes Where Nombre like [*]%a"; SQL statement:
+SELECT * FROM Pacientes Where Nombre like %a [42000-214]
+2023-02-11 16:48:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "Nombre" no encontrada
+Column "Nombre" not found [42122-214]
+	at com.h2database@2.1.214/org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at com.h2database@2.1.214/org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at com.h2database@2.1.214/org.h2.message.DbException.get(DbException.java:223)
+	at com.h2database@2.1.214/org.h2.message.DbException.get(DbException.java:199)
+	at com.h2database@2.1.214/org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at com.h2database@2.1.214/org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:301)
+	at conectores.Conectores.telefonos(Conectores.java:140)
+	at conectores.Conectores.main(Conectores.java:20)
+2023-02-11 16:48:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "Nif" no encontrada
+Column "Nif" not found [42122-214]
+	at com.h2database@2.1.214/org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at com.h2database@2.1.214/org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at com.h2database@2.1.214/org.h2.message.DbException.get(DbException.java:223)
+	at com.h2database@2.1.214/org.h2.message.DbException.get(DbException.java:199)
+	at com.h2database@2.1.214/org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at com.h2database@2.1.214/org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:301)
+	at conectores.Conectores.telefonos(Conectores.java:140)
+	at conectores.Conectores.main(Conectores.java:20)
+2023-02-11 16:51:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "Nif_doctor" no encontrada
+Column "Nif_doctor" not found [42122-214]
+	at com.h2database@2.1.214/org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at com.h2database@2.1.214/org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at com.h2database@2.1.214/org.h2.message.DbException.get(DbException.java:223)
+	at com.h2database@2.1.214/org.h2.message.DbException.get(DbException.java:199)
+	at com.h2database@2.1.214/org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3518)
+	at com.h2database@2.1.214/org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:301)
+	at conectores.Conectores.telefonos(Conectores.java:140)
+	at conectores.Conectores.main(Conectores.java:20)
