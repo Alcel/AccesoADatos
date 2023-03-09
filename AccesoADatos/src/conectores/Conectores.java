@@ -95,9 +95,9 @@ public static void pediatras() {
 	Connection con = null;
 	try {
 		
-  	  Class.forName("org.sqlite.JDBC");
+  	  Class.forName("org..JDBC");
   
-        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite.db");
+        con=DriverManager.getConnection("jdbc::src/db/consultorio..db");
         System.out.println("conexion establecida");
     } catch (SQLException e) {
         System.err.println("Error:" +e);

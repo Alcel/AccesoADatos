@@ -9,8 +9,7 @@ import java.sql.Statement;
 public class Metadatos {
 	
 	public static void main(String[] args) {
-		Connection con = null;
-		
+		Connection con = null;	
 	
 	try {
 		

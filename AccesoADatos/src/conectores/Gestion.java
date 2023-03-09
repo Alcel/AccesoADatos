@@ -11,10 +11,15 @@ import com.mysql.cj.xdevapi.PreparableStatement;
 
 public class Gestion {
 	public static void main(String[] args) {
-		//visitas();
-		//nuevoDoctor("00000001A","Jose Luis", 119, "general");
+		//nuevoDoctor("0050001A","Todrigo Luis", 14524519, "general");
 		//doctores();
-		//nuevoPaciente("00007451K","Juan Alberto","112");
+		//nuevoPaciente("0507451K","Juan","11526662");
+		//pacientes();
+	    //nuevaVisita("1515151","1551542","2011");
+		//visitas();
+		
+		//cumpleanos("88888889");
+		//tfnoFijo();
 		
 	}
 	public static void doctores() {
@@ -23,7 +28,7 @@ public class Gestion {
 			
 	  	  Class.forName("org.sqlite.JDBC");
 	  
-	        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite.db");
+	        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite");
 	    } catch (SQLException e) {
 	        System.err.println("Error:" +e);
 	    } catch (ClassNotFoundException e) {
@@ -50,7 +55,7 @@ public class Gestion {
 				
 		  	  Class.forName("org.sqlite.JDBC");
 		  
-		        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite.db");
+		        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite");
 		    } catch (SQLException e) {
 		        System.err.println("Error:" +e);
 		    } catch (ClassNotFoundException e) {
@@ -65,7 +70,7 @@ public class Gestion {
 		          st=(Statement) con.createStatement();
 		          rs=st.executeQuery("Select * From Pacientes");
 		          while (rs.next()) {                
-		              System.out.println(rs.getString("Nif")+" "+rs.getString("Nombre")+" "+rs.getString("Telefono"));
+		              System.out.println(rs.getString("Nif")+" "+rs.getString("Nombre")+" "+rs.getString("Tfno"));
 		          }
 		          con.close();
 		      } catch (Exception e) {System.out.print(e);
@@ -78,7 +83,7 @@ public class Gestion {
 				
 		  	  Class.forName("org.sqlite.JDBC");
 		  
-		        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite.db");
+		        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite");
 		    } catch (SQLException e) {
 		        System.err.println("Error:" +e);
 		    } catch (ClassNotFoundException e) {
@@ -107,7 +112,7 @@ public class Gestion {
 			
 	  	  Class.forName("org.sqlite.JDBC");
 	  
-	        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite.db");
+	        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite");
 	    } catch (SQLException e) {
 	        System.err.println("Error:" +e);
 	    } catch (ClassNotFoundException e) {
@@ -141,7 +146,7 @@ public class Gestion {
 			
 	  	  Class.forName("org.sqlite.JDBC");
 	  
-	        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite.db");
+	        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite");
 	    } catch (SQLException e) {
 	        System.err.println("Error:" +e);
 	    } catch (ClassNotFoundException e) {
@@ -174,7 +179,7 @@ public class Gestion {
 			
 	  	  Class.forName("org.sqlite.JDBC");
 	  
-	        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite.db");
+	        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite");
 	    } catch (SQLException e) {
 	        System.err.println("Error:" +e);
 	    } catch (ClassNotFoundException e) {
@@ -187,7 +192,7 @@ public class Gestion {
 	      ResultSet rs;
 	      try {
 	         
-	          stmt = con.prepareStatement("INSERT INTO Doctores(Nif, Nombre, Fecha) VALUES (?, ?, ?)");
+	          stmt = con.prepareStatement("INSERT INTO Visitas(Nif_doctor, Nif_paciente, Fecha) VALUES (?, ?, ?)");
 
 	          stmt.setString(1, doctor);
 	          stmt.setString(2, paciente);
@@ -201,12 +206,75 @@ public class Gestion {
 	}
 	public static void cumpleanos(String doctor) {
 		//aumenta la edad en 1 del doctor indicado por DNI.
+		
+		Connection con = null;
+		try {
+			
+	  	  Class.forName("org.sqlite.JDBC");
+	  
+	        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite");
+	    } catch (SQLException e) {
+	        System.err.println("Error:" +e);
+	    } catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	      
+		  PreparedStatement stmt;
+	      ResultSet rs;
+	     try {
+	    	  stmt = con.prepareStatement ("update Doctores set Edad = Edad +1  where Nif='"+doctor+"'");
+	         
+	          
+	    	  stmt.executeUpdate();
+	         
+	          con.close();
+	      } catch (Exception e) {System.out.print(e);
+	      }
+		
 	}
 		
 	 public static void tfnoFijo() {
+		 Connection con = null;
 		 //modifica los 3 primeros dígitos del teléfono de todos los pacientes a 950.
-	 }
-	
-	
 
+			
+			  
+		      
+			try {
+				
+		  	  Class.forName("org.sqlite.JDBC");
+		  
+		        con=DriverManager.getConnection("jdbc:sqlite:src/db/consultorio.SQLite");
+		    } catch (SQLException e) {
+		        System.err.println("Error:" +e);
+		    } catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		      
+			  PreparedStatement stmt;
+			  Statement st;
+		      ResultSet rs;
+		      String numero="";
+		      String dni="";
+		     try {
+		    	 st=(Statement) con.createStatement();
+		          rs=st.executeQuery("Select * From Pacientes");
+		          while (rs.next()) {                
+		              dni=rs.getString("Nif");
+		              numero = rs.getString("Tfno");
+		              if(numero.length()>3) {
+		            	  numero = numero.substring(4);
+		              }
+		              
+		              numero = 950+numero;
+		              stmt = con.prepareStatement ("update Pacientes set Tfno ='"+numero+"'where Nif ='"+dni+"'");
+		              stmt.executeUpdate();
+		          }
+		         
+		          con.close();
+		      } catch (Exception e) {System.out.print(e);}
+	 }
 }
